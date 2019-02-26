@@ -73,11 +73,11 @@ node('agent && linux') // shall only run on a jenkins agent with linux
 				sh 'yarn install'
 				sh 'yarn lint --quiet'
 								
-				sh "yarn add jest jest-junit --dev"
-				withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
-					sh 'yarn test --ci --testResultsProcessor="jest-junit"'
-				}
-				junit 'jest-test-results.xml'
+				// sh "yarn add jest jest-junit --dev"
+				// withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
+				// 	sh 'yarn test --ci --testResultsProcessor="jest-junit"'
+				// }
+				// junit 'jest-test-results.xml'
 				
 				sh "webpack --config webpack.prod.js --bail --display-error-details"
 
