@@ -57,7 +57,8 @@ node('agent && linux') // shall only run on a jenkins agent with linux
 
 			stage('Set versions and build metasfresh-webui-frontend')
 			{
-				checkout scm; // i hope this to do all the magic we need
+				def scmVars = checkout scm; // i hope this to do all the magic we need
+				def gitCommitHash = scmVars.GIT_COMMIT
 				sh 'git clean -d --force -x' // clean the workspace
 
 				nexusCreateRepoIfNotExists mvnConf.mvnDeployRepoBaseURL, mvnConf.mvnRepoName
@@ -82,7 +83,7 @@ node('agent && linux') // shall only run on a jenkins agent with linux
 				sh "webpack --config webpack.prod.js --bail --display-error-details"
 
 				def misc = new de.metas.jenkins.Misc();
-				env.BUILD_GIT_SHA1="${misc.getCommitSha1()}";
+				env.BUILD_GIT_SHA1="${gitCommitHash}";
 
 				// https://github.com/metasfresh/metasfresh-webui-frontend/issues/292
 				// add a file info.json whose shall look similar to the info which spring-boot provides unter the /info URL
