@@ -135,8 +135,6 @@ class Image extends Component {
     });
   }
 
-
-
   handleCamera() {
     this.setState(
       {
