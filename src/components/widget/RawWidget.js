@@ -422,7 +422,7 @@ export class RawWidget extends Component {
             <DatePicker
               field={fields[0].field}
               timeFormat={false}
-              dateFormat={`x`}
+              dateFormat={`L HH:mm:SSS`}
               inputProps={{
                 placeholder: fields[0].emptyText,
                 disabled: readonly,
